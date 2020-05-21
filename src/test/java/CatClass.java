@@ -1,6 +1,7 @@
 import org.testng.annotations.Test;
 
 public class CatClass {
+    //------------------May 13---------------------
     @Test
     public void test01() {
         //Hello, World
@@ -11,7 +12,7 @@ public class CatClass {
     @Test
     public void test02() {
         //Variables and Types
-        /*
+        /**
         Create all of the primitives (except long and double) with different values.
         Concatenate them into a string and print it to the screen so it will print:
         H3110 w0r1d 2.0 true
@@ -58,7 +59,7 @@ public class CatClass {
     @Test
     public void test05() {
         //Loops
-        /*
+        /**
         Loop through and print out all even numbers, each in a separate line,
         from the numbers list in the same order they are received.
         Don't print any numbers that come after 237 in the sequence.
@@ -111,7 +112,7 @@ public class CatClass {
     @Test
     public void test07() {
         //Objects
-        /*
+        /**
         Write a new method in Point called scale,
         that will make the point closer by half to (0,0).
         So for example, point (8, 4) after scale will be (4, 2).
@@ -146,8 +147,8 @@ public class CatClass {
     public void test08() {
         //Compiling and Running with Arguments
         //Create a program that prints the arguments of our program. Write one argument per line.
-        /*
-        I have created Cat.java with some code inside:
+        /**
+        I have created a separate file Cat.java with the code inside:
             public class Cat {
                 public static void main(String[] args) {
                     System.out.println("hey!");
@@ -172,4 +173,93 @@ public class CatClass {
             System.out.println("Left IS NOT EQUAL TO " + right);
         }
     }
+    //--------------------May 20---------------------
+    //Swap two numbers in an array
+    //1. create an input array
+    //2. create a method with int[] parameter
+    //3. new method will also take indexes of L and R elements
+    //4. use indexes R and L and respective elements will be swapped with each other
+    //5. print out final version of the array
+    public void printAllMembersOfArray(int[] arrayParameter) {
+        for (int i = 0; i < arrayParameter.length; i++) {
+            int currentElement = arrayParameter[i];
+            System.out.println(currentElement);
+        }
+    }
+    public void printAllMembersOfArrayE(int[] arrayParameter) {
+        for (int eachMember : arrayParameter) {
+            System.out.println(eachMember);
+        }
+    }
+    public void swap(int[] input, int indexL, int indexR) {
+        int temporaryElement = 0;
+        temporaryElement = input[indexL];
+        input[indexL] = input[indexR];
+        input[indexR] = temporaryElement;
+    }
+    @Test
+    public void test_swapNumbers() {
+        int[] input = {1, 2, 3, 4, 5, 6};
+        int indexL = 0;
+        int indexR = 1;
+
+        swap(input, indexL, indexR);
+        printAllMembersOfArray(input);
+    }
+    @Test
+    public void test_swap_Exception() {
+        int[] input = {1};
+        int indexL = 0;
+        int indexR = 1;
+
+        checkInputs(input, indexL, indexR);
+        swap(input, indexL, indexR);
+        printAllMembersOfArray(input);
+    }
+    //TODO: add checks for input array
+    private void checkInputs(int[] input, int indexL, int indexR) {
+        if (input != null && input.length > 1) {
+            System.out.println("Array in not empty and has at least two values");
+        } else {
+            throw new AssertionError("Array is empty, or has less than two values needed for \"swap\" method. Input length = " + input.length);
+        }
+        if (indexL >= 0 && indexL < input.length && indexR >= 0 && indexR < input.length) {
+            System.out.println("Inputs are OK");
+        } else {
+            throw new AssertionError("Inputs are NOT OK: indexL=" + indexL + ", indexR=" + indexR);
+        }
+    }
+    //TODO: break down into sub-steps (external methods), `letter` should be a parameter as well
+    //Count a number of a specific letters in a string
+    //1. create an input string
+    //2. create a method with input parameter and letter parameter
+    //3. use predefined string method to split the string in an array of characters
+    //4. print out the number of letters counted
+    @Test
+    public void testCountLetters() {
+        String input = "hello world";
+        int result = 0;
+        char letter = 'l';
+
+        checkLetterInputs(input);
+        count(input, letter, result);
+        printResult(result); //result = 0, making count method public don't help
+    }
+
+    private void count(String input, char letter, int result) {
+        char[] charArray = input.toCharArray();
+        for (char eachChar : charArray) {
+            if (eachChar == letter) result++;
+        }
+    }
+    private void checkLetterInputs(String input) {
+        if (input.length() > 0) {
+            System.out.println("String in not empty and has at least one character");
+        } else {
+            throw new AssertionError("String is empty. String length = " + input.length());
+        }
+    }
+    public void printResult(int letterResult) {
+        System.out.println(letterResult);
+        }
 }
