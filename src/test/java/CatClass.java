@@ -173,7 +173,7 @@ public class CatClass {
             System.out.println("Left IS NOT EQUAL TO " + right);
         }
     }
-    //--------------------May 20---------------------
+    //--------------------May 20----------------------------------
     //Swap two numbers in an array
     //1. create an input array
     //2. create a method with int[] parameter
@@ -235,22 +235,27 @@ public class CatClass {
     //2. create a method with input parameter and letter parameter
     //3. use predefined string method to split the string in an array of characters
     //4. print out the number of letters counted
+
+    public void printResult(int letterResult) {
+        System.out.println(letterResult);
+    }
     @Test
-    public void testCountLetters() {
+    private void testCountLetters() {
         String input = "hello world";
         int result = 0;
         char letter = 'l';
 
         checkLetterInputs(input);
-        count(input, letter, result);
-        printResult(result); //result = 0, making count method public don't help
+        int finalresult = count(input, letter, result);
+        System.out.println("There are " + finalresult + " letters \"" + letter + "\" in following string: \"" + input + "\".");
     }
-
-    private void count(String input, char letter, int result) {
+    public int count(String input, char letter, int result) {
         char[] charArray = input.toCharArray();
         for (char eachChar : charArray) {
             if (eachChar == letter) result++;
         }
+        //return result;
+        return result;
     }
     private void checkLetterInputs(String input) {
         if (input.length() > 0) {
@@ -259,7 +264,4 @@ public class CatClass {
             throw new AssertionError("String is empty. String length = " + input.length());
         }
     }
-    public void printResult(int letterResult) {
-        System.out.println(letterResult);
-        }
 }
