@@ -1,3 +1,4 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CatClass {
@@ -252,9 +253,10 @@ public class CatClass {
     public int count(String input, char letter, int result) {
         char[] charArray = input.toCharArray();
         for (char eachChar : charArray) {
-            if (eachChar == letter) result++;
+            if (eachChar == letter) {
+                result++;
+            }
         }
-        //return result;
         return result;
     }
     private void checkLetterInputs(String input) {
@@ -263,5 +265,14 @@ public class CatClass {
         } else {
             throw new AssertionError("String is empty. String length = " + input.length());
         }
+    }
+    //---------------------------May 27-----------------------------
+    @Test
+    public void test_AppleCreation() {
+        Apple apple01 = new Apple("Honey Crisp", "red", 0.8);
+        String apple01kind = apple01.getKind();
+
+        System.out.println(apple01kind);
+        Assert.assertEquals(apple01kind, "Honey Crisp");
     }
 }
